@@ -2,6 +2,7 @@
 
 namespace Hoyvoy\CrossDatabase\Connectors;
 
+use Hoyvoy\CrossDatabase\MariaDBConnection;
 use Hoyvoy\CrossDatabase\MySqlConnection;
 use Hoyvoy\CrossDatabase\PostgresConnection;
 use Hoyvoy\CrossDatabase\SqlServerConnection;
@@ -27,6 +28,8 @@ class ConnectionFactory extends IlluminateConnectionFactory
         }
 
         switch ($driver) {
+            case 'mariadb':
+                return new MariaDBConnection($connection, $database, $prefix, $config);
             case 'mysql':
                 return new MySqlConnection($connection, $database, $prefix, $config);
             case 'pgsql':
